@@ -7,8 +7,21 @@ group = "com.example"
 version = "0.1.0"
 val javaVersion = 25
 
-val appData = System.getenv("APPDATA") ?: (System.getenv("HOME") + "/.var/app/com.hypixel.HytaleLauncher/data")
-val hytaleAssets = file("$appData/Hytale/install/release/package/game/latest/Assets.zip")
+// Only set 'customGameDirectory' if you changed your Hytale installation path from the default AppData path.
+// Example: You have Hytale installed at "D:/My Games/Hytale/..." Set this variable to "D:/My Games" (exclude /Hytale/...)
+var customGameDirectory = ""
+var baseDirectoryPath = ""
+
+if (customGameDirectory == ""){
+    // Base directory defaults to appData
+    baseDirectoryPath = System.getenv("APPDATA") ?: (System.getenv("HOME") + "/.var/app/com.hypixel.HytaleLauncher/data")
+}
+else{
+    // Base directory is custom
+    baseDirectoryPath = customGameDirectory
+}
+
+var hytaleAssets = file("$baseDirectoryPath/Hytale/install/release/package/game/latest/Assets.zip")
 
 
 repositories {
@@ -61,7 +74,10 @@ tasks.named<ProcessResources>("processResources") {
 }
 
 hytale {
-
+    // Sets 'gameDir' to customGameDirectory (if it's set) so that the "hytale-mod" plugin knows where the gameDir is for getting the HytaleServer.jar
+    if (customGameDirectory != ""){
+        gameDir = "$customGameDirectory/Hytale"
+    }
 }
 
 tasks.withType<Jar> {
