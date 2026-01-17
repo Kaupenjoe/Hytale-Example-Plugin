@@ -7,9 +7,33 @@ group = "com.example"
 version = "0.1.0"
 val javaVersion = 25
 
-val appData = System.getenv("APPDATA") ?: (System.getenv("HOME") + "/.var/app/com.hypixel.HytaleLauncher/data")
-val hytaleAssets = file("$appData/Hytale/install/release/package/game/latest/Assets.zip")
+val home = System.getenv("HOME")
+val os = System.getProperty("os.name").lowercase()
 
+val appData = when {
+    os.contains("win") ->
+        System.getenv("APPDATA")
+
+    os.contains("mac") || os.contains("darwin") ->
+        "$home/Library/Application Support"
+
+    os.contains("linux") -> {
+        val flatpakPath = "$home/.var/app/com.hypixel.HytaleLauncher/data"
+        when {
+            File(flatpakPath).exists() -> flatpakPath
+            System.getenv("XDG_DATA_HOME") != null ->
+                System.getenv("XDG_DATA_HOME")
+            else ->
+                "$home/.local/share"
+        }
+    }
+
+    else -> error("Unsupported OS")
+}
+
+val hytaleAssets = file(
+    "$appData/Hytale/install/release/package/game/latest/Assets.zip"
+)
 
 repositories {
     mavenCentral()
@@ -61,7 +85,7 @@ tasks.named<ProcessResources>("processResources") {
 }
 
 hytale {
-
+    gameDir = "$appData/Hytale"
 }
 
 tasks.withType<Jar> {
