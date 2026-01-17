@@ -7,8 +7,20 @@ group = "com.example"
 version = "0.1.0"
 val javaVersion = 25
 
-val appData = System.getenv("APPDATA") ?: (System.getenv("HOME") + "/.var/app/com.hypixel.HytaleLauncher/data")
-val hytaleAssets = file("$appData/Hytale/install/release/package/game/latest/Assets.zip")
+val osName = System.getProperty("os.name", "").lowercase()
+val userHome = System.getProperty("user.home") ?: System.getenv("HOME") ?: "."
+
+val appData = when {
+    osName.contains("mac") || osName.contains("darwin") ->
+        File(userHome, "Library/Application Support")
+
+    osName.contains("win") ->
+        System.getenv("APPDATA")?.let { File(it) } ?: File(userHome, "AppData")
+
+    else ->
+        File(userHome, ".var/app/com.hypixel.HytaleLauncher/data")
+}
+val hytaleAssets = appData.resolve("Hytale/install/release/package/game/latest/Assets.zip")
 
 
 repositories {
