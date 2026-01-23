@@ -1,0 +1,15 @@
+Group {
+  LayoutMode: Top;
+
+  Group #OverheadRoot {
+    // Position top-left with offsets
+    Anchor: (Top: 20, Left: 20, Width: 500, Height: 60);
+
+    Label #NameLabel {
+      Style: (FontSize: 28, Alignment: Center);
+      Anchor: (Width: 500, Height: 60);
+      Padding: (Full: 6);
+      Text: "Loading...";
+    }
+  }
+}

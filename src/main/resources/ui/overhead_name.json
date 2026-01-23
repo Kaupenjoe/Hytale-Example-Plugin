@@ -1,0 +1,19 @@
+{
+  "type": "panel",
+  "id": "OverheadRoot",
+  "anchor": "TopLeft",
+  "area": { "x": 0, "y": 0, "w": 1920, "h": 1080 },
+  "children": [
+    {
+      "type": "text",
+      "id": "NameText",
+      "anchor": "TopLeft",
+      "area": { "x": 0, "y": 0, "w": 300, "h": 30 },
+      "text": "PLAYER",
+      "style": {
+        "fontSize": 16,
+        "outline": true
+      }
+    }
+  ]
+}
