@@ -22,12 +22,14 @@ dependencies {
     compileOnly(libs.jetbrains.annotations)
     compileOnly(libs.jspecify)
 
-    if (hytaleAssets.exists()) {
-        compileOnly(files(hytaleAssets))
-    } else {
-        // Optional: Print a warning so you know why it's missing
-        logger.warn("Hytale Assets.zip not found at: ${hytaleAssets.absolutePath}")
-    }
+    implementation(files("lib/SimpleEnchantments-0.9.0.jar"))
+    implementation(files("lib/DynamicTooltipsLib-1.4.1.jar"))
+//    if (hytaleAssets.exists()) {
+//        compileOnly(files(hytaleAssets))
+//    } else {
+//        // Optional: Print a warning so you know why it's missing
+//        logger.warn("Hytale Assets.zip not found at: ${hytaleAssets.absolutePath}")
+//    }
 }
 
 java {
