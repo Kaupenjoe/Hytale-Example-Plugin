@@ -1,18 +1,26 @@
 {
-  "Group": "${plugin_group}",
-  "Name": "${plugin_name}",
-  "Version": "${plugin_version}",
-  "Description": "${plugin_description}",
-  "Authors": [
-    {
-      "Name": "${plugin_author}"
+    "Group": "ExampleGroup",
+    "Name": "ExamplePlugin",
+    "Version": "0.1.0",
+    "Description": "An example plugin for Hytale!",
+    "Authors": [
+        {
+            "Name": "\"It's you!\""
+        }
+    ],
+    "Website": "",
+    "ServerVersion": ">=0.6.8",
+    "Dependencies": {
+        "Hytale:AssetModule": "*",
+        "Hytale:EntityModule": "*"
+    },
+    "OptionalDependencies": {
+        
+    },
+    "DisabledByDefault": false,
+    "Main": "com.example.exampleplugin.ExamplePlugin",
+    "IncludesAssetPack": true,
+    "UpdateChecker": {
+        "CurseForge": ""
     }
-  ],
-  "Website": "${plugin_website}",
-  "ServerVersion": "${server_version}",
-  "Dependencies": {},
-  "OptionalDependencies": {},
-  "DisabledByDefault": false,
-  "IncludesAssetPack": true,
-  "Main": "${plugin_main_entrypoint}"
 }
