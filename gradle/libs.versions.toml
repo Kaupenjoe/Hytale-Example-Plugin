@@ -1,6 +1,7 @@
 [versions]
 jetbrains-annotations = "26.0.2-1"
 jspecify = "1.0.0"
+hytale-tools = "1.0.51"
 
 [libraries]
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
@@ -9,3 +10,4 @@ jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 [bundles]
 
 [plugins]
+hytale-tools = { id = "com.azuredoom.hytale-tools", version.ref = "hytale-tools" }
